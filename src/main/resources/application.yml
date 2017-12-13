@@ -1,0 +1,15 @@
+server:
+    port: 8080
+    context-path: /
+spring:
+    profiles:
+        active: a
+    datasource:
+        driver-class-name: com.mysql.jdbc.Driver
+        url: jdbc:mysql://127.0.0.1:3306/testdb
+        username: root
+        password: mysql@weijie
+    jpa:
+      hibernate:
+        ddl-auto: update
+      show-sql: true
