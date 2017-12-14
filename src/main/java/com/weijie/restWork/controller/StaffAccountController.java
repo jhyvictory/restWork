@@ -11,6 +11,7 @@ import com.weijie.restWork.service.StaffService;
 import com.weijie.restWork.util.JWT;
 import com.weijie.restWork.util.ResponseData;
 import java.util.Map;
+import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -31,17 +32,18 @@ public class StaffAccountController {
     
     @PostMapping(value = "/login")
     public ResponseData login(@RequestParam( "name") String name,
-            @RequestParam("password") String password) {
+            @RequestParam("password") String password, HttpServletResponse response) {
         ResponseData responseData = ResponseData.ok();
         Staff staff = staffService.checkLogin(name, password);
         
         if(null != staff) {
             TokenObject tokenObject = new TokenObject(staff.getStaff_id(), staff.getName(), staff.getStaff_type());            
             String token = JWT.sign(tokenObject, 60L* 1000L* 30L);
-            responseData.setValue("loginId", staff.getStaff_id());
-            responseData.setValue("token", token);
+//            responseData.setValue("loginId", staff.getStaff_id());
+//            responseData.setValue("token", token);
             responseData.setValue("staff", staff);
             System.out.println(token);
+            response.addHeader("token", token);
         }else{
             responseData =  ResponseData.customerError();
         }   
@@ -69,6 +71,30 @@ public class StaffAccountController {
 //        }
 //        userService.createUser(userInfo.getTel(),userInfo.getPassWord());
 //        return "OK";
+//    }
+    
+//    @RequestMapping(path={"/request"})
+//    @ResponseBody
+//    public String request(Model model, HttpServletRequest request, HttpServletResponse, HttpSession session) {
+//        StringBuilder sb = new StringBuilder();
+//        sb.append(request.getMethod() + "    ");
+//        sb.append(request.getRequestURL() + "    ");
+//        sb.append(request.getQueryString() + "    ");  
+//        
+//        Enumeration<string> headerNames = request.getHeaderNames();
+//        while(headerNames.hasMoreElements()) {
+//            String name = headerNames.nextElement();
+//            sb.append(name + ":" + sb.getHeader(name) + " ");
+//        }
+//        
+//        foreach(Cookie cookie : request.getCookies()) {
+//            sb.append("Cookie:" + cookie.getName() + ":" + "Value:" + cookie.getValue());
+//        }
+//        
+//        @CookieValue("JSESSIONID") String sessionId;
+//        
+//        response.addHeader("nofaker", "Hello");
+//        response.addCookie(new Cookie("nofaker", "Cookie"));
 //    }
     
     private class TokenObject {
