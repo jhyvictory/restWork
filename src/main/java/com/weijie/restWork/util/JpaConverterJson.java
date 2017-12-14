@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.weijie.restWork.entity;
+package com.weijie.restWork.util;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -14,7 +14,7 @@ import javax.persistence.AttributeConverter;
  *
  * @author hyjiang
  */
-class JpaConverterJson implements AttributeConverter<Object, String> {
+public class JpaConverterJson implements AttributeConverter<Object, String> {
     private final static ObjectMapper objectMapper = new ObjectMapper();
 
     @Override

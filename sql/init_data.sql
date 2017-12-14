@@ -16,4 +16,4 @@ INSERT INTO `testdb`.`person`(id, age, name) VALUES(2, 21, '马冬梅');
 
 DELETE FROM `testdb`.`staff`;
 INSERT INTO `testdb`.`staff`(staff_id, staff_name, staff_type, password, portrait, mobile, email) 
- VALUES("53102b43bf1044ed8b0ba35c", "admin", "admin", MD5(MD5("admin123456")), "", "18805697820", "jhyvictory@foxmail.com");
+ VALUES("53102b43bf1044ed8b0ba35c", "admin", "admin", "admin123456", "", "18805697820", "jhyvictory@foxmail.com");

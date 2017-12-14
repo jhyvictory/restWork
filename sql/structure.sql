@@ -232,7 +232,7 @@ CREATE TABLE IF NOT EXISTS `testdb`.`staff` (
 	`portrait` VARCHAR(32) NULL DEFAULT '' COMMENT '用户头像',
 	`mobile` VARCHAR(32) NULL COMMENT '手机号码',
 	`email` VARCHAR(32) NULL COMMENT '邮箱',
-	`extra_info` JSON NULL COMMENT '附加信息，包括',
+-- 	`extra_info` JSON NULL COMMENT '附加信息，包括',
 	`create_time` INT NOT NULL DEFAULT 0 COMMENT '创建时间',
 	`update_time` INT NOT NULL DEFAULT 0 COMMENT '更新时间',
 	UNIQUE INDEX `staff_name_UNIQUE` (`staff_name` ASC),
