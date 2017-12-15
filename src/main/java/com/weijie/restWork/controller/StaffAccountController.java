@@ -39,14 +39,12 @@ public class StaffAccountController {
         if(null != staff) {
             TokenObject tokenObject = new TokenObject(staff.getStaff_id(), staff.getName(), staff.getStaff_type());            
             String token = JWT.sign(tokenObject, 60L* 1000L* 30L);
-//            responseData.setValue("loginId", staff.getStaff_id());
-//            responseData.setValue("token", token);
             responseData.setValue("staff", staff);
             System.out.println(token);
             response.addHeader("token", token);
         }else{
             responseData =  ResponseData.customerError();
-        }   
+        }
         return responseData;
     }
     
